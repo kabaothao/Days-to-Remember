@@ -1,0 +1,15 @@
+.nav{
+    display: flex;
+    height: 100px;
+    color: #9b5de5;
+    background-color: #fee440;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-top: 30px;
+    padding-left: 30px;
+}
+.nav-link{
+    padding-right: 50px;
+    color: #9b5de5;
+
+}

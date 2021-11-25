@@ -1,0 +1,19 @@
+.home-page {
+  margin: 0px;
+  background-color: #9b5de5;
+  color: #fee440;
+  width: auto;
+  height: 160vh;
+}
+
+.dtr {
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+
+
+
+

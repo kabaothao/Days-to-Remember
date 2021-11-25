@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
 import {
   ApolloClient,
   InMemoryCache,
@@ -6,11 +8,13 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-// import Home from './pages/Home';
-// import Signup from './pages/Signup';
-// import Login from './pages/Login';
+
+// import Signup from './components/Signup';
+// import Login from './components/Login';
+import Navbar from './components/Navbar';
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 
 
 // Construct our main GraphQL API endpoint
@@ -41,7 +45,15 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-       
+      <div>
+          <Navbar />
+          <Switch>
+          <Route exact path="/login" component={LoginForm} />
+          <Route exact path="/signup" component={SignupForm} />
+            <Route exact path="/" component={HomePage} />
+            <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
+          </Switch>
+        </div>
       </Router>
     </ApolloProvider>
   );
