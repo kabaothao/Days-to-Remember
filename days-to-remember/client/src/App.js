@@ -13,7 +13,6 @@ import { setContext } from '@apollo/client/link/context';
 // import Signup from './components/Signup';
 // import Login from './components/Login';
 import Navbar from './components/Navbar';
-import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 
 
@@ -48,7 +47,6 @@ function App() {
       <div>
           <Navbar />
           <Switch>
-          <Route exact path="/login" component={LoginForm} />
           <Route exact path="/signup" component={SignupForm} />
             <Route exact path="/" component={HomePage} />
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />

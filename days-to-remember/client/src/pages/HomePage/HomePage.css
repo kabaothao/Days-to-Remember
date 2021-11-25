@@ -1,6 +1,7 @@
 .home-page {
   margin: 0px;
   background-color: #9b5de5;
+  /* background-image: linear-gradient(to bottom right, #9B5DE5, #F15BB5); */
   color: #fee440;
   width: auto;
   height: 160vh;

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import { Navbar,Container, Nav, Modal, Tab } from 'react-bootstrap';
 import "./Navbar.css";
+import { MdCake } from "react-icons/md";
 
-import SignUpForm from './SignupForm';
-import LoginForm from './LoginForm';
+// import SignUpForm from './SignupForm';
 
 import Auth from '../utils/auth';
 
@@ -16,7 +16,7 @@ const AppNavbar = () => {
     <>
       <Navbar className="nav" fixed="top">
         <Container>
-          <Navbar.Brand>Days To Remember</Navbar.Brand>
+          <Navbar.Brand>DR < MdCake /> </Navbar.Brand>
         </Container>
         {/* if user is logged in show saved books and logout */}
         {Auth.loggedIn() ? (
