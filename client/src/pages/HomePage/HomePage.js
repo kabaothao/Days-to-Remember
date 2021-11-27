@@ -11,6 +11,7 @@ const HomePage = () => {
       <div className="home-page">
         <div className="home-page-wrapper">
           <h3 className="dtr">Generate Card</h3>
+
           {/* User Form Beginning */}
           <div className="form"> 
           <Form className="formWrapper">
@@ -51,11 +52,8 @@ const HomePage = () => {
             </Form.Group>
           </Form>
           </div>
-
-
-
-
-
+          {/* User Form End */}
+          
         </div>
       </div>
     );
