@@ -1,7 +1,9 @@
-import React from "react";
-import './PeopleList.css';
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import './userForm.css';
 
-const PeopleList = () => {
+const userForm = () => {
+
     return (
       <div className="people-list-page">
         <div className="people-list-wrapper">
@@ -13,7 +15,8 @@ const PeopleList = () => {
           </div>
         </div>
       </div>
+
     );
 }
 
-export default PeopleList;
+export default userForm;
