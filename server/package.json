@@ -20,6 +20,7 @@
     "graphql": "^15.5.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "twilio": "^3.71.2"
   }
 }
