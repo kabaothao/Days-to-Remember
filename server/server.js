@@ -5,6 +5,8 @@ const path = require('path');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 
+// require Twilio credentials from utils
+const client = require('./utils/twilio');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
@@ -27,6 +29,24 @@ if (process.env.NODE_ENV === 'production') {
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+// route to post messages that send SMS through Twilio
+app.post('/api/messages', (req, res) => {
+  res.header('Content-Type', 'application/json');
+  client.messages
+    .create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: req.body.to,
+      body: req.body.body
+    })
+    .then(() => {
+      res.send(JSON.stringify({ success: true }));
+    })
+    .catch(err => {
+      console.log(err);
+      res.send(JSON.stringify({ success: false }));
+    });
 });
 
 db.once('open', () => {
