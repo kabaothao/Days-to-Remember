@@ -15,14 +15,15 @@
 }
 
 .formWrapper {
-  padding-left: 200px;
+  padding-left: 300px;
+
 }
 
-.form{
+/* .form{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
+} */
 
 
 
