@@ -12,8 +12,8 @@ const userData = [
         "password": "$2a$10$P4TiD6D3NG0K.InsL/xRWeuiPuCFaaiI.Wrm3rElchnPZnHov1iEW"
       },
       {
-        "name": "Bob Ross",
-        "email": "test@test.com",
+        "name": "Bobbie Ross",
+        "email": "test2@test.com",
         "password": "$2a$10$P4TiD6D3NG0K.InsL/xRWeuiPuCFaaiI.Wrm3rElchnPZnHov1iEW"
       },
 ]
