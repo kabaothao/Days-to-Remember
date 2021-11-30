@@ -6,7 +6,8 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    cards: [Card]!
+    events: [Event]
+    cards: [Card]
   }
 
   type Card {
@@ -24,6 +25,7 @@ const typeDefs = gql`
     phoneNum: String
     date: String
     from: String
+    createdAt: String
   }
 
   type Auth {
