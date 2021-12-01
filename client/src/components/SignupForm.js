@@ -6,6 +6,10 @@ import { Form, Button, Alert } from "react-bootstrap";
 import Auth from "../utils/auth";
 
 const SignupForm = () => {
+
+
+
+
   return (
     // Login Form
     <div className="form-wrapper">
