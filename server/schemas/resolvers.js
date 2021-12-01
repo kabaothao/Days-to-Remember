@@ -50,7 +50,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addEvent: async (parent, { title }, context) => {
+    addEvent: async (parent, { eventData }, context) => {
       if (context.user) {
         const event = await Event.create({
           title,
@@ -59,7 +59,7 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { events: event._id } }
+          { $addToSet: { events: eventData } }
         );
 
         return event;
