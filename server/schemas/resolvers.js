@@ -51,7 +51,7 @@ const resolvers = {
       if (context.user) {
         const event = await Event.create({
           title,
-          from: context.user.username,
+          usernameEvent: context.user.username,
         });
 
         await User.findOneAndUpdate(
@@ -67,7 +67,7 @@ const resolvers = {
       if (context.user) {
         const event = await Event.findOneAndDelete({
           _id: eventId,
-          from: context.user.username,
+          usernameEvent: context.user.username,
         });
 
         await User.findOneAndUpdate(

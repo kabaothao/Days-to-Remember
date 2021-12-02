@@ -11,9 +11,9 @@ db.once('open', async () => {
     await User.create(userSeeds);
 
     for (let i = 0; i < eventSeeds.length; i++) {
-      const { _id, from } = await Event.create(eventSeeds[i]);
+      const { _id, usernameEvent } = await Event.create(eventSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { username: from },
+        { username: usernameEvent },
         {
           $addToSet: {
             events: _id,

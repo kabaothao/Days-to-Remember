@@ -22,8 +22,8 @@ const eventSchema = new Schema({
     type: Date,
     required: true,
   },
-  from: {
-    type: Schema.Types.ObjectId,
+  usernameEvent: {
+    type: String,
     ref: "User",
   },
   createdAt: {

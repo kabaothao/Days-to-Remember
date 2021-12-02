@@ -24,7 +24,7 @@ const typeDefs = gql`
     name: String
     phoneNum: String
     date: String
-    from: String
+    usernameEvent: String
     createdAt: String
   }
 
