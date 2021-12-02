@@ -10,8 +10,6 @@ const client = require('twilio')(
   process.env.TWILIO_ACCOUNT_SID,
   process.env.TWILIO_AUTH_TOKEN
 );
-// const client = require('twilio')
-//   ("AC09ace65ba6bb4d24debc7ab18743d0ec", "eb3cce3e617db24e06f92c10b1d4a2d1");
 
 const db = require('./config/connection');
 
