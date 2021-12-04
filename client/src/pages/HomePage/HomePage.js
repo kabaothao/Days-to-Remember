@@ -1,74 +1,163 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HomePage.css";
 // import userForm from '../userForm/userForm';
 import { Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { useMutation } from "@apollo/client";
+import { ADD_EVENT } from "../../utils/mutations";
+import { QUERY_EVENTS, GET_ME } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
 
 const HomePage = () => {
-
+  //for datepicker
   const [startDate, setStartDate] = useState(new Date());
-  
 
-    return (
-      <div className="home-page">
-        <div className="home-page-wrapper">
-          <h3 className="dtr">Generate Card</h3>
+  //declaring variables to useState
+  const [SaveInput, SetSaveInput] = useState({
+    title: "",
+    name: "",
+    phoneNum: "",
+    date: "",
+  });
 
-          {/* User Form Beginning */}
-          <div className="form">
-            <Form className="formWrapper">
-              <Form.Group
-                as={Row}
-                className="mb-3"
-                controlId="formHorizontalTo"
-              >
-                <Form.Label column lg={6}>
-                  Title
-                </Form.Label>
-                <Col sm={10}>
-                  <Form.Control type="input" placeholder="Event" />
-                </Col>
-              </Form.Group>
+  const [addEvent, { error }] = useMutation(ADD_EVENT, {
+    update(cache, { data: { addEvent } }) {
+      try {
+        const { events } = cache.readQuery({ query: QUERY_EVENTS });
 
-              <Form.Group
-                as={Row}
-                className="mb-3"
-                controlId="formHorizontalTo"
-              >
-                <Form.Label column lg={6}>
-                  To
-                </Form.Label>
-                <Col sm={10}>
-                  <Form.Control type="input" placeholder="Name" />
-                </Col>
-              </Form.Group>
+        cache.writeQuery({
+          query: QUERY_EVENTS,
+          data: { events: [addEvent, ...events] },
+        }); 
+      } catch (e) {
+        console.error(e);
+      }
 
-              <Form.Group
-                as={Row}
-                className="mb-3"
-                controlId="formHorizontalFrom"
-              >
-                <Form.Label column lg={6}>
-                  Phone Number
-                </Form.Label>
-                <Col sm={10}>
-                  <Form.Control type="input" placeholder="phone number" />
-                </Col>
-              </Form.Group>
+      // update me object's cache
+      const { me } = cache.readQuery({ query: GET_ME });
+      cache.writeQuery({
+        query: GET_ME,
+        data: { me: { ...me, events: [...me.events, addEvent] } },
+      });
+    },
+  });
 
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // console.log(event.target.event.value);
+    // console.log(event.target.toName.value);
+    // console.log(event.target.phoneNumber.value);
+    // console.log(event.target.date.value);
+
+    const saveInput = { 
+      title: event.target.event.value, 
+      name: event.target.toName.value,
+      phoneNum: event.target.phoneNumber.value,
+      date: event.target.date.value
+    }; 
+    console.log(saveInput); 
+    // SetSaveInput({...eventDetails}); 
+    // console.log(SaveInput); 
+
+    try {
+      const { data } = await addEvent({
+        variables: {
+          title: event.target.event.value,
+          name: event.target.toName.value,
+          phoneNum: event.target.phoneNumber.value,
+          date: event.target.date.value
+          
+          // events: {...eventDetails}
+         
+          // eventAuthor: Auth.getProfile().data.username,
+        },
+      });
+
+      console.log("Input Data", saveInput);
+
+      SetSaveInput({
+        title: "",
+        name: "",
+        phoneNum: "",
+        date: "",
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    // if (name === 'saveInput' ) {
+    //   SetSaveInput(value);
+    // }
+    SetSaveInput(saveInput => ({...saveInput, [event.target.name]: event.target.value}))
+  };
+
+  return (
+    <div className="home-page">
+      <div className="home-page-wrapper">
+        <h3 className="dtr">Generate Card</h3>
+
+        {/* User Form Beginning */}
+        <div className="form">
+          <Form className="formWrapper" onSubmit={handleFormSubmit}>
+            <Form.Group as={Row} className="mb-3" controlId="formHorizontalTo">
               <Form.Label column lg={6}>
-                Pick the date
+                Title 
               </Form.Label>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-              />
+              <Col sm={10}>
+                <Form.Control type="input" name="event" onChange={handleChange} placeholder="Event" 
+                // value={saveInput.title}
+                />
+              </Col>
+            </Form.Group>
 
-              {/* 
+            <Form.Group as={Row} className="mb-3" controlId="formHorizontalTo">
+              <Form.Label column lg={6}>
+                To 
+              </Form.Label>
+              <Col sm={10}>
+                <Form.Control type="input" name="toName" onChange={handleChange} placeholder="Name" 
+                // value={saveInput.name}
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Group
+              as={Row}
+              className="mb-3"
+              controlId="formHorizontalFrom"
+            >
+              <Form.Label column lg={6}>
+                Phone Number
+              </Form.Label>
+              <Col sm={10}>
+                <Form.Control
+                  type="input"
+                  name="phoneNumber"
+                  onChange={handleChange}
+                  placeholder="phone number"
+                  // value={saveInput.phoneNum}
+                />
+              </Col>
+            </Form.Group>
+
+            <Form.Label column lg={6}>
+              Pick the date
+            </Form.Label>
+            <DatePicker
+              name="date"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              // onChange={handleChange}
+              // value={saveInput.date}
+            />
+
+            {/* 
             <FloatingLabel controlId="floatingTextarea2">
               <Form.Control
                 as="textarea"
@@ -77,17 +166,17 @@ const HomePage = () => {
               />
             </FloatingLabel> */}
 
-              <Form.Group as={Row} className="mb-3">
-                <Col sm={{ span: 10, offset: 2 }}>
-                  <Button type="submit">Submit</Button>
-                </Col>
-              </Form.Group>
-            </Form>
-          </div>
-          {/* User Form End */}
+            <Form.Group as={Row} className="mb-3">
+              <Col sm={{ span: 10, offset: 2 }}>
+                <Button type="submit">Submit</Button>
+              </Col>
+            </Form.Group>
+          </Form>
         </div>
+        {/* User Form End */}
       </div>
-    );
-}
+    </div>
+  );
+};
 
 export default HomePage;

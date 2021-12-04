@@ -14,16 +14,31 @@ export const GET_ME = gql`
                 name
                 phoneNum
                 date
-                from
+                usernameEvent
                 createdAt
             }
-            cards {
-                _id
-                cardRecipient
-                cardText
-                cardSender
-                createdAt
-            }
+            # cards {
+            #     _id
+            #     cardRecipient
+            #     cardText
+            #     cardSender
+            #     createdAt
+            # }
         }
     }
 `;
+
+export const QUERY_EVENTS = gql`
+  query getEvents {
+    events {
+      _id
+      title
+      name
+      phoneNum
+      date
+      usernameEvent
+      createdAt
+    }
+  }
+`;
+
