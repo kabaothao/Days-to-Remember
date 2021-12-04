@@ -3,12 +3,15 @@ import "./Form.css";
 import { Form, Button } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
+// import { HomePage } from "../pages/HomePage";
 import Auth from "../utils/auth";
+import { useHistory } from "react-router-dom";
+
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [login] = useMutation(LOGIN_USER);
-
+  let history = useHistory();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -34,7 +37,8 @@ const LoginForm = () => {
       }
 
       Auth.login(data.login.token);
-      window.location.reload();
+      // window.location.reload();
+      history.push("/");
     } catch (err) {
       console.error(err);
     }
