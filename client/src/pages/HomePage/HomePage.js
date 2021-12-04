@@ -16,7 +16,7 @@ const HomePage = () => {
 
   //declaring variables to useState
   const [SaveInput, SetSaveInput] = useState({
-    event: "",
+    title: "",
     name: "",
     phoneNum: "",
     date: "11/7/2017",
@@ -47,14 +47,15 @@ const HomePage = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("=======",SaveInput);
-      const { data } = await addEvent(SaveInput)
-      // ({
-      //   variables: {
-      //     ...SaveInput
-      //     // usernameEvent: Auth.getProfile().data.username,
-      //   },
-      // });
+      console.log("=======", SaveInput);
+      const { data } = await addEvent({
+        variables: {
+          title: SaveInput.title,
+          name: SaveInput.name,
+          phoneNum: SaveInput.phoneNum,
+          date: "11/1/2020",
+        },
+      });
     } catch (err) {
       console.error(err);
     }
@@ -86,7 +87,7 @@ const HomePage = () => {
                   <Col sm={10}>
                     <Form.Control
                       type="input"
-                      name="event"
+                      name="title"
                       onChange={handleChange}
                       placeholder="Event"
                       // value={SaveInput}

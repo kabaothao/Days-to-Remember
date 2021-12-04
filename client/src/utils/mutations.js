@@ -35,14 +35,11 @@ export const ADD_USER = gql`
 export const ADD_EVENT = gql`
   mutation addEvent($title:String!, $name:String, $phoneNum:String, $date:String) {
     addEvent(title: $title, name: $name, phoneNum: $phoneNum, date: $date) {
-      _id
       title
       name
       phoneNum
       date
-      # usernameEvent
       # createdAt
-
       # cards {
       #     _id
       #     cardRecipient
