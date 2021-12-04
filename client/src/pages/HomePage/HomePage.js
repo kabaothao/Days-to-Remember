@@ -10,75 +10,50 @@ import { QUERY_EVENTS, GET_ME } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
 
-const HomePage = ({ title, name, phoneNum, date }) => {
+const HomePage = () => {
   //for datepicker
-  const [startDate, setStartDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
 
   //declaring variables to useState
   const [SaveInput, SetSaveInput] = useState({
-    title: "",
+    event: "",
     name: "",
     phoneNum: "",
-    date: "",
+    date: "11/7/2017",
   });
 
-  const [addEvent, { error }] = useMutation(ADD_EVENT, {
-    update(cache, { data: { addEvent } }) {
-      try {
-        const { events } = cache.readQuery({ query: QUERY_EVENTS });
+  const [addEvent, { error, data }] = useMutation(ADD_EVENT)
+  //   update(cache, { data: { addEvent } }) {
+  //     try {
+  //       const { events } = cache.readQuery({ query: QUERY_EVENTS });
 
-        cache.writeQuery({
-          query: QUERY_EVENTS,
-          data: { events: [addEvent, ...events] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
+  //       cache.writeQuery({
+  //         query: QUERY_EVENTS,
+  //         data: { events: [addEvent, ...events] },
+  //       });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
 
-      // update me object's cache
-      const { me } = cache.readQuery({ query: GET_ME });
-      cache.writeQuery({
-        query: GET_ME,
-        data: { me: { ...me, events: [...me.events, addEvent] } },
-      });
-    },
-  });
+  //     // update me object's cache
+  //     const { me } = cache.readQuery({ query: GET_ME });
+  //     cache.writeQuery({
+  //       query: GET_ME,
+  //       data: { me: { ...me, events: [...me.events, addEvent] } },
+  //     });
+  //   },
+  // });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(event.target.event.value);
-    console.log(event.target.toName.value);
-    console.log(event.target.phoneNumber.value);
-    console.log(event.target.date.value);
-
-    // const eventDetails = {
-    //   title: event.target.event.value,
-    //   name: event.target.toName.value,
-    //   phoneNum: event.target.phoneNumber.value,
-    //   date: event.target.date.value
-    // };
-    // console.log(saveInput);
-    // SetSaveInput({...eventDetails});
-    // console.log(eventDetails);
-
     try {
-      const { data } = await addEvent({
-        variables: {
-          title,
-          name,
-          phoneNum,
-          date,
-          usernameEvent: Auth.getProfile().data.username,
-        },
-      });
-      console.log(data);
-
-      // SetSaveInput({
-      //   title: "",
-      //   name: "",
-      //   phoneNum: "",
-      //   date: "",
+      console.log("=======",SaveInput);
+      const { data } = await addEvent(SaveInput)
+      // ({
+      //   variables: {
+      //     ...SaveInput
+      //     // usernameEvent: Auth.getProfile().data.username,
+      //   },
       // });
     } catch (err) {
       console.error(err);
@@ -87,17 +62,8 @@ const HomePage = ({ title, name, phoneNum, date }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "title") {
-      SetSaveInput(value);
-    } else if (name === "name") {
-      SetSaveInput(value);
-    } else if (name === "phoneNum") {
-      SetSaveInput(value);
-    } else if (name === "date") {
-      SetSaveInput(value);
-    }
-    console.log(event.target.name.value);
-    return;
+    SetSaveInput({...SaveInput, [name]: value})
+    // console.log("HandleChange", SaveInput);
   };
 
   return (
@@ -139,7 +105,7 @@ const HomePage = ({ title, name, phoneNum, date }) => {
                   <Col sm={10}>
                     <Form.Control
                       type="input"
-                      name="toName"
+                      name="name"
                       onChange={handleChange}
                       placeholder="Name"
                       // value={SaveInput.name}
@@ -158,14 +124,14 @@ const HomePage = ({ title, name, phoneNum, date }) => {
                   <Col sm={10}>
                     <Form.Control
                       type="input"
-                      name="phoneNumber"
+                      name="phoneNum"
                       onChange={handleChange}
                       placeholder="phone number"
                       // value={SaveInput.phoneNum}
                     />
                   </Col>
                 </Form.Group>
-
+{/* 
                 <Form.Label column lg={6}>
                   Pick the date
                 </Form.Label>
@@ -174,10 +140,9 @@ const HomePage = ({ title, name, phoneNum, date }) => {
                   type="input"
                   name="date"
                   selected={startDate}
-                  // onChange={(date) => setStartDate(date)}
+                  onChange={(date) => setStartDate(date)}
                   onChange={handleChange}
-                  // value={SaveInput.date}
-                />
+                /> */}
 
                 <Form.Group as={Row} className="mb-3">
                   <Col sm={{ span: 10, offset: 2 }}>

@@ -47,21 +47,25 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addEvent: async (parent, { title }, context) => {
-      if (context.user) {
+    addEvent: async (parent, { title, name, phoneNum, date }, context) => {
+      console.log("adding event", title);
+      // if (context.user) {
+      console.log("adding event2", title);
+
         const event = await Event.create({
           title,
-          usernameEvent: context.user.username,
+          name,
+          phoneNum,
+          date,
         });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { events: event._id } }
-        );
+        // await User.findOneAndUpdate(
+        //   { _id: context.user._id },
+        //   { $addToSet: { events: event._id } }
+        // );
 
         return event;
-      }
-      throw new AuthenticationError("You need to be logged in!");
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
     },
     removeEvent: async (parent, { eventId }, context) => {
       if (context.user) {
