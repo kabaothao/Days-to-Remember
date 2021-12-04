@@ -29,9 +29,9 @@ const AllUserEvents = () => {
   //         })
   // }, []);
 
-  if (!events.length) {
-    return <h3>No Events Yet</h3>;
-  }
+  // if (!events.length) {
+  //   return <h3>No Events Yet</h3>;
+  // }
 
   return (
     <div className="events-page">

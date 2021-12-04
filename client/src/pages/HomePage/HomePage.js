@@ -8,9 +8,11 @@ import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../../utils/mutations";
 import { QUERY_EVENTS, GET_ME } from "../../utils/queries";
 
-import Auth from "../../utils/auth";
+
+// import Auth from '../utils/auth';
 
 const HomePage = () => {
+
   //for datepicker
   const [startDate, setStartDate] = useState(new Date());
 
