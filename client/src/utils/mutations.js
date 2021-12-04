@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 //use resolvers.js file as a guide to build mutations.
 
@@ -34,27 +34,22 @@ export const ADD_USER = gql`
 
 export const ADD_EVENT = gql`
   mutation addEvent($title: String!) {
-    addEvent(title: $title) {
-        _id
-        username
-        email
-        password
-        events {
-            _id
-            title
-            name
-            phoneNum
-            date
-            from
-            createdAt
-        }
-        cards {
-            _id
-            cardRecipient
-            cardText
-            cardSender
-            createdAt
-        }
+    addEvent(title: $title, name: $name, phoneNum: $phoneNum, date: $date, usernameEvent: $usernameEvent) {
+      _id
+      title
+      name
+      phoneNum
+      date
+      usernameEvent
+      createdAt
+
+      # cards {
+      #     _id
+      #     cardRecipient
+      #     cardText
+      #     cardSender
+      #     createdAt
+      # }
     }
   }
 `;
@@ -63,27 +58,22 @@ export const ADD_EVENT = gql`
 
 export const REMOVE_EVENT = gql`
   mutation removeEvent($eventId: ID!) {
-    addEvent(eventId: $eventId) {
-        _id
-        username
-        email
-        password
-        events {
-            _id
-            title
-            name
-            phoneNum
-            date
-            from
-            createdAt
-        }
-        cards {
-            _id
-            cardRecipient
-            cardText
-            cardSender
-            createdAt
-        }
+    removeEvent(eventId: $eventId) {
+      _id
+      title
+      name
+      phoneNum
+      date
+      usernameEvent
+      createdAt
+
+      # cards {
+      #   _id
+      #   cardRecipient
+      #   cardText
+      #   cardSender
+      #   createdAt
+      # }
     }
   }
 `;
