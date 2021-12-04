@@ -15,26 +15,21 @@
 
 .formWrapper {
   padding-left: 300px;
-
 }
-button:hover{
+
+button:hover {
   cursor: pointer;
 }
 
-/* .form{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-} */
+.welcome {
+  padding-top: 50px;
+  padding: 50px;
+  text-align: center;
+  font-style: italic;
+}
 
 @media screen and (max-width: 375px) {
-
-.home-page{
-  max-height: 50%;
+  .home-page {
+    max-height: 50%;
+  }
 }
-
-
-}
-
-
-

@@ -9,13 +9,11 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-// import Signup from './components/Signup';
-// import Login from './components/Login';
+
 import Navbar from './components/Navbar';
 import SignupForm from './components/SignupForm';
 import AllUserEvents from './pages/AllUserEvents/AllUserEvents';
 import LoginForm from './components/LoginForm';
-
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({

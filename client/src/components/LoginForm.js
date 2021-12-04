@@ -3,10 +3,8 @@ import "./Form.css";
 import { Form, Button } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
-// import { HomePage } from "../pages/HomePage";
 import Auth from "../utils/auth";
 import { useHistory } from "react-router-dom";
-
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
@@ -35,9 +33,7 @@ const LoginForm = () => {
       if (!data) {
         throw new Error("something went wrong!");
       }
-
       Auth.login(data.login.token);
-      // window.location.reload();
       history.push("/");
     } catch (err) {
       console.error(err);
@@ -82,7 +78,7 @@ const LoginForm = () => {
               {/* Password is required! */}
             </Form.Control.Feedback>
           </Form.Group>
-          <Button type='submit'>Submit</Button>
+          <Button type="submit">Submit</Button>
         </Form>
       </div>
     </div>
