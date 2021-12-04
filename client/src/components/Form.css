@@ -1,19 +1,17 @@
-.btn {
-  background-color: #fee440 !important;
-  color: #9b5de5 !important;
-  padding: 10px;
-  margin-top: 20px;
-}
-
 form {
-  /* background-image: linear-gradient(to bottom right,#FEE440, #00F5D4); */
   height: 100vh;
   color: #fee440 !important;
-  padding: 80px;
+  padding: 110px;
   background-color: #9b5de5 !important;
 }
 .form-label {
   padding-right: 15px;
+}
+input{
+  min-width: 80%;
+}
+input.date-picker{
+  min-width: auto !important;
 }
 .form-wrapper {
   display: flex;
@@ -28,3 +26,29 @@ form {
   flex: 1;
   position: relative;
 }
+.btn {
+  /* background-color: #fee440 !important;
+  color: #9b5de5 !important; */
+  background-color: #31193a !important;
+  color: #f8f9f0 !important;
+  padding: 10px;
+  margin-top: 20px;
+}
+button:hover{
+  cursor: pointer;
+  box-shadow: 3px 3px #bd98eb;
+
+}
+.button:active {
+  box-shadow: 0 5px #fee440;
+  transform: translateY(4px);
+}
+
+@media screen and (max-width: 375px) {
+
+  form{
+    height: auto;
+    /* padding-top: 500px; */
+  }
+  
+  }

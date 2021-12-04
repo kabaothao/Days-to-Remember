@@ -1,4 +1,4 @@
-.people-list-page{
+/* .people-list-page{
   background-color: #9b5de5;
   background-image: linear-gradient(to bottom right, #9B5DE5, #F15BB5);
   padding: 100px 100px;
@@ -37,6 +37,22 @@
   justify-content: center;
   display: flex;
 }
+
+button:hover{
+  cursor: pointer;
+}
+
+@media screen and (max-width: 375px) {
+  .home-page {
+      padding: 0;
+  }
+  .home-page-wrapper{
+      height: 40vh;
+      width: 1000%;
+  }
+
+}
+ */
 
 
 

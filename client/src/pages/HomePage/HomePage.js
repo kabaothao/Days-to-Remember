@@ -170,6 +170,8 @@ const HomePage = ({ title, name, phoneNum, date }) => {
                   Pick the date
                 </Form.Label>
                 <DatePicker
+                className="date-picker"
+                  type="input"
                   name="date"
                   selected={startDate}
                   // onChange={(date) => setStartDate(date)}

@@ -35,7 +35,7 @@ const AllUserEvents = () => {
 
   return (
     <div className="events-page">
-      <h1 className="event-page-discr">This are All user's Events</h1>
+      <h1 className="event-page-discr">Your Events</h1>
 
       {/* <div className="events-container">
         {events &&
