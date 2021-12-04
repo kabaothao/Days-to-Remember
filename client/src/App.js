@@ -9,7 +9,6 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-
 // import Signup from './components/Signup';
 // import Login from './components/Login';
 import Navbar from './components/Navbar';
