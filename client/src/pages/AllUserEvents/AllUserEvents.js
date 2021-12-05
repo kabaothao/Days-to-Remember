@@ -48,10 +48,11 @@ const AllUserEvents = () => {
             <div key={event._id} className="event-title">
               {event.title}
             </div>
+            <div key={event._id} className="event-name">
+              {event.name}
+            </div>
             <div key={event._id} className="event-date">
-            <Moment unix>{event.date / 1000}</Moment>
-            {/* {event.date } */}
-            
+            <Moment format="MM/DD/YYYY" unix>{event.date / 1000}</Moment>
               <div>
                 <Button
                   onSubmit={handleDeleteEvent}
