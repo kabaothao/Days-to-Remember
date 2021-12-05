@@ -8,25 +8,22 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { QUERY_EVENTS, QUERY_EVENT, GET_ME } from "../../utils/queries";
 import { REMOVE_EVENT } from "../../utils/mutations";
-
-// import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 
 const AllUserEvents = () => {
-
   const { loading, data } = useQuery(QUERY_EVENTS);
   const userData = data?.events || [];
-  console.log("???", userData);
-  
+  // console.log("???", userData);
   const [removeEvent] = useMutation(REMOVE_EVENT);
+  // console.log("removing", userData);
 
-  // console.log("removing", userDatadata.event);
-  const handleDeleteEvent = async (event) => {
-    event.preventDefault();
+  const handleDeleteEvent = async (eventId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    console.log("event", eventId);
     try {
-      console.log('===', removeEvent);
-      const {userData} = await removeEvent({
+      await removeEvent({
         variables: { 
-          eventId: userData.events.event._id 
+          eventId: eventId
         },
       })
     } catch (err) {
@@ -34,7 +31,6 @@ const AllUserEvents = () => {
     }
   };
   
-
   if (!userData.length) {
     return <h3 className="no-events">No Events Yet</h3>;
   }
@@ -50,8 +46,6 @@ const AllUserEvents = () => {
             </div>
             <div key={event._id} className="event-date">
             <Moment unix>{event.date / 1000}</Moment>
-            {/* {event.date } */}
-            
               <div>
                 <Button
                   onSubmit={handleDeleteEvent}
