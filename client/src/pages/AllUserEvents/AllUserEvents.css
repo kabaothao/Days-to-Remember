@@ -29,7 +29,6 @@ body {
   padding: 5px;
   box-shadow: 0 2px 2px 2px;
 }
-
 .event-border:hover {
   transform: scale(1.05);
 }
@@ -40,6 +39,10 @@ body {
 .event-date {
   font-size: 20px;
   padding: 10px;
+}
+.no-events{
+  text-align: center;
+  padding-top: 50px;
 }
 button:hover{
   cursor: pointer;

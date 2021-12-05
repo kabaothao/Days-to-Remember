@@ -5,7 +5,7 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("cards");
+      return User.findOne({ username }).populate("events");
     },
     cards: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -49,7 +49,7 @@ const resolvers = {
     },
     addEvent: async (parent, { title, name, phoneNum, date }, context) => {
       if (context.user) {
-        console.log("Context", context);
+        // console.log("Context", context);
         const event = await Event.create({
           title,
           name,
@@ -71,12 +71,11 @@ const resolvers = {
           _id: eventId,
           usernameEvent: context.user.username,
         });
-
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { events: event._id } }
         );
-
+        
         return event;
       }
       throw new AuthenticationError("You need to be logged in!");
