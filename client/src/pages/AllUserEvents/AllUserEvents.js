@@ -1,32 +1,42 @@
 import React, { useState, useEffect } from "react";
+import Moment from 'react-moment';
+import 'moment-timezone';
 import "./AllUserEvents.css";
 import { Button } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/client";
 // import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import { QUERY_EVENTS, QUERY_EVENT } from "../../utils/queries";
+import { QUERY_EVENTS, QUERY_EVENT, GET_ME } from "../../utils/queries";
 import { REMOVE_EVENT } from "../../utils/mutations";
 
 // import Auth from '../../utils/auth';
 
 const AllUserEvents = () => {
+
   const { loading, data } = useQuery(QUERY_EVENTS);
   const userData = data?.events || [];
-  // console.log("???", userData);
-  // console.log("data", data);
-
+  console.log("???", userData);
+  
   const [removeEvent] = useMutation(REMOVE_EVENT);
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteEvent = (event) => {
+  // console.log("removing", userDatadata.event);
+  const handleDeleteEvent = async (event) => {
     event.preventDefault();
-    removeEvent({
-      variables: { eventId: event._id },
-    });
+    try {
+      console.log('===', removeEvent);
+      const {userData} = await removeEvent({
+        variables: { 
+          eventId: userData.events.event._id 
+        },
+      })
+    } catch (err) {
+      console.error(err);
+    }
   };
+  
 
   if (!userData.length) {
-    return <h3>No Events Yet</h3>;
+    return <h3 className="no-events">No Events Yet</h3>;
   }
   return (
     <div className="events-page">
@@ -39,7 +49,9 @@ const AllUserEvents = () => {
               {event.title}
             </div>
             <div key={event._id} className="event-date">
-              {event.date}
+            <Moment unix>{event.date / 1000}</Moment>
+            {/* {event.date } */}
+            
               <div>
                 <Button
                   onSubmit={handleDeleteEvent}

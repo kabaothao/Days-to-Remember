@@ -66,6 +66,16 @@ const HomePage = () => {
     SetSaveInput({ ...SaveInput, [name]: value });
   };
 
+  const [showResults, setShowResults] = React.useState(false)
+  const onClick = () => setShowResults(true)
+
+
+const Results = () => (
+  <div id='submit'>
+    Your event has been saved!
+  </div>
+)
+  
   return (
     <div className="home-page">
       <div className="home-page-wrapper">
@@ -131,6 +141,28 @@ const HomePage = () => {
                     />
                   </Col>
                 </Form.Group>
+
+
+                {/* In place of a date-picker */}
+
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formHorizontalFrom"
+                >
+                  <Form.Label column lg={6}>
+                    Date
+                  </Form.Label>
+                  <Col sm={10}>
+                    <Form.Control
+                      type="input"
+                      name="date"
+                      onChange={handleChange}
+                      placeholder="mm/dd/yyyy"
+                      // value={SaveInput.phoneNum}
+                    />
+                  </Col>
+                </Form.Group>
                 {/* 
                 <Form.Label column lg={6}>
                   Pick the date
@@ -146,10 +178,17 @@ const HomePage = () => {
 
                 <Form.Group as={Row} className="mb-3">
                   <Col sm={{ span: 10, offset: 2 }}>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit" onClick={onClick}> Submit</Button>
                   </Col>
                 </Form.Group>
+                <h4>
+              { showResults ? <Results /> : null } 
+              </h4>
               </Form>
+
+
+
+
             </div>
             {/* User Form End */}
           </>
@@ -164,5 +203,6 @@ const HomePage = () => {
     </div>
   );
 };
+
 
 export default HomePage;

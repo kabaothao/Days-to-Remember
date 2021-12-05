@@ -21,6 +21,10 @@ button:hover {
   cursor: pointer;
 }
 
+#submit{
+  font-style: italic;
+}
+
 .welcome {
   padding-top: 50px;
   padding: 50px;
