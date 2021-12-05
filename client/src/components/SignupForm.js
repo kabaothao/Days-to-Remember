@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import "./Form.css";
-import { Form, Button} from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
-// import { HomePage } from "../pages/HomePage";
 import Auth from "../utils/auth";
+import { useHistory } from "react-router-dom";
 
-//TODO: I still need to work on LoginForm
 const SignupForm = () => {
-   // set initial form state
-   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  // set initial form state
+  const [userFormData, setUserFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  let history = useHistory();
+  const [addUser] = useMutation(ADD_USER);
 
-   //TODO: set addUser mutation
-   const [addUser] = useMutation(ADD_USER);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
 
-   const handleInputChange = (event) => {
-     const { name, value } = event.target;
-     setUserFormData({...userFormData, [name]: value });
-   };
-
-   const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     // check if form has everything (as per react-bootstrap docs)
@@ -28,39 +30,31 @@ const SignupForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    //TODO: 
     try {
-      //const response = await createUser(userFormData);
       //set up useMutation hook
-      const {data} = await addUser({ variables: userFormData  });
+      const { data } = await addUser({ variables: userFormData });
       console.log(data);
-
       if (!data) {
         throw new Error("something went wrong!");
       }
-
       //pass in token recevied from mutation response
       Auth.login(data.addUser.token);
       //part of mutation use
-      window.location.reload();
+      history.push("/");
     } catch (err) {
       console.error(err);
-      //setShowAlert(true);
     }
 
     setUserFormData({
-      username: '',
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: "",
     });
-    
   };
 
   return (
-    
     // Login Form
     <div className="form-wrapper">
-
       <div className="form-left">
         <Form onSubmit={handleFormSubmit}>
           <h1>Signup</h1>
@@ -108,15 +102,9 @@ const SignupForm = () => {
               {/* Password is required! */}
             </Form.Control.Feedback>
           </Form.Group>
-          <Button
-            type='submit'
-          >
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </Form>
       </div>
-
-
     </div>
   );
 };

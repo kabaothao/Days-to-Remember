@@ -1,31 +1,29 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 //use typeDefs as a guide to build gql
 export const GET_ME = gql`
-    {
-        me {
-            _id
-            username
-            email
-            password
-            events {
-                _id
-                title
-                name
-                phoneNum
-                date
-                usernameEvent
-                createdAt
-            }
-            # cards {
-            #     _id
-            #     cardRecipient
-            #     cardText
-            #     cardSender
-            #     createdAt
-            # }
-        }
+  {
+    me {
+      _id
+      username
+      email
+      password
+      events {
+        _id
+        title
+        name
+        phoneNum
+        date
+      }
+      # cards {
+      #     _id
+      #     cardRecipient
+      #     cardText
+      #     cardSender
+      #     createdAt
+      # }
     }
+  }
 `;
 
 export const QUERY_EVENTS = gql`
@@ -36,9 +34,17 @@ export const QUERY_EVENTS = gql`
       name
       phoneNum
       date
-      usernameEvent
-      createdAt
     }
   }
 `;
 
+export const QUERY_EVENT = gql`
+query getEvent($eventId: ID!) {
+  event(eventId: $eventId) {
+      _id
+      title
+      name
+      phoneNum
+      date
+  }
+}`

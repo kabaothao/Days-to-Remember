@@ -22,7 +22,7 @@ const HomePage = () => {
     date: "11/7/2017",
   });
 
-  const [addEvent, { error, data }] = useMutation(ADD_EVENT)
+  const [addEvent, { error, data }] = useMutation(ADD_EVENT);
   //   update(cache, { data: { addEvent } }) {
   //     try {
   //       const { events } = cache.readQuery({ query: QUERY_EVENTS });
@@ -63,8 +63,7 @@ const HomePage = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    SetSaveInput({...SaveInput, [name]: value})
-    // console.log("HandleChange", SaveInput);
+    SetSaveInput({ ...SaveInput, [name]: value });
   };
 
   return (
@@ -132,7 +131,7 @@ const HomePage = () => {
                     />
                   </Col>
                 </Form.Group>
-{/* 
+                {/* 
                 <Form.Label column lg={6}>
                   Pick the date
                 </Form.Label>
@@ -155,10 +154,11 @@ const HomePage = () => {
             {/* User Form End */}
           </>
         ) : (
-          <p>
-            You need to be logged in to add an event. Please{" "}
-            <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-          </p>
+          <h2 className="welcome">
+            Welcome to Days to Remember App. You need to be logged in to add an
+            event. Please <Link to="/login">login</Link> or{" "}
+            <Link to="/signup">signup.</Link>
+          </h2>
         )}
       </div>
     </div>
