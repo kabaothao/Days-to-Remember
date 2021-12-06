@@ -55,7 +55,7 @@ const AllUserEvents = () => {
               <div>
                 <Button
                   // onSubmit={handleDeleteEvent}
-                  onClick={handleDeleteEvent}
+                  onClick={() => handleDeleteEvent(event._id)}
                   className="event-delete-btn"
                   type="submit"
                 >
