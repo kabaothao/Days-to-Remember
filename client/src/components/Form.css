@@ -44,11 +44,9 @@ button:hover{
   transform: translateY(4px);
 }
 
-@media screen and (max-width: 375px) {
-
-  form{
-    height: auto;
-    /* padding-top: 500px; */
-  }
-  
+  @media screen and (max-width: 375px) {
+    form{
+      height: auto;
+      width: auto;
+    }
   }

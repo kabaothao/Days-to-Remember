@@ -9,7 +9,7 @@ body {
   background-color: #9b5de5;
   color: #fee440;
   width: auto;
-  height: 160vh;
+  height: auto;
 }
 .event-page-discr {
   text-align: center;
@@ -46,4 +46,10 @@ body {
 }
 button:hover{
   cursor: pointer;
+}
+@media screen and (max-width: 375px) {
+  .events-page{
+    min-height: 160vh;
+    max-height: auto;
+  }
 }

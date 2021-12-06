@@ -8,7 +8,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { QUERY_EVENTS, QUERY_EVENT, GET_ME } from "../../utils/queries";
 import { REMOVE_EVENT } from "../../utils/mutations";
-import Auth from '../../utils/auth';
+import { FaGrinStars } from "react-icons/fa";
+// import Auth from '../../utils/auth';
 
 const AllUserEvents = () => {
   const { loading, data } = useQuery(QUERY_EVENTS);
@@ -17,13 +18,15 @@ const AllUserEvents = () => {
   const [removeEvent] = useMutation(REMOVE_EVENT);
   // console.log("removing", userData);
 
-  const handleDeleteEvent = async (eventId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-    console.log("event", eventId);
+  const handleDeleteEvent = async (event) => {
+    event.preventDefault();
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
     try {
-      await removeEvent({
+      console.log("userData", userData);
+      // console.log("eventId", eventId);
+      const { data } = await removeEvent({
         variables: { 
-          eventId: eventId
+          // eventId: eventId
         },
       })
     } catch (err) {
@@ -42,16 +45,17 @@ const AllUserEvents = () => {
         userData.map((event) => (
           <div className="event-border">
             <div key={event._id} className="event-title">
-              {event.title}
+              {event.title} <FaGrinStars/>
             </div>
             <div key={event._id} className="event-name">
-              {event.name}
+              of {event.name}
             </div>
             <div key={event._id} className="event-date">
             <Moment format="MM/DD/YYYY" unix>{event.date / 1000}</Moment>
               <div>
                 <Button
-                  onSubmit={handleDeleteEvent}
+                  // onSubmit={handleDeleteEvent}
+                  onClick={handleDeleteEvent}
                   className="event-delete-btn"
                   type="submit"
                 >

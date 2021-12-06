@@ -1,6 +1,10 @@
 .home-page {
   margin: 0px;
   background-color: #9b5de5;
+  background-image: url("../../img/background.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   color: #fee440;
   width: auto;
   height: 100vh;
@@ -21,19 +25,35 @@ button:hover {
   cursor: pointer;
 }
 
-#submit{
+#submit {
   font-style: italic;
 }
 
 .welcome {
-  padding-top: 50px;
-  padding: 50px;
+  font-size: 30px;
+  padding: 180px;
+  padding-top: 220px;
+  max-width: 60%;
   text-align: center;
   font-style: italic;
 }
 
 @media screen and (max-width: 375px) {
   .home-page {
-    max-height: 50%;
+    max-height: auto;
+    max-width: auto;
+    text-align: center;
+  }
+  .welcome {
+    padding: 40px;
+    padding-top: 100px;
+    font-size: 20px;
+    max-width: 100%;
+  }
+  .formWrapper {
+    padding-left: 50px;
+  }
+  .dtr {
+    font-size: 30px;
   }
 }

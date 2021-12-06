@@ -56,6 +56,7 @@ export const ADD_EVENT = gql`
 export const REMOVE_EVENT = gql`
   mutation removeEvent($eventId: ID!) {
     removeEvent(eventId: $eventId) {
+      _id
       title
       name
       phoneNum
