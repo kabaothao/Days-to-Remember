@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import background from '../../img/background.jpeg';
 import "./HomePage.css";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../../utils/mutations";
 import { QUERY_EVENTS, GET_ME } from "../../utils/queries";
-
+import { FaPhoneAlt } from "react-icons/fa";
+import { ImCalendar } from "react-icons/im";
+import { BsPersonFill, BsPenFill } from "react-icons/bs";
 import Auth from "../../utils/auth";
 
 const HomePage = () => {
@@ -20,30 +21,30 @@ const HomePage = () => {
     title: "",
     name: "",
     phoneNum: "",
-    date: "11/7/2017",
+    date: "",
   });
+  const [value, setValue] = useState();
+  const [addEvent, { error, data }] = useMutation(ADD_EVENT, {
+    update(cache, { data: { addEvent } }) {
+      try {
+        const { events } = cache.readQuery({ query: QUERY_EVENTS });
 
-  const [addEvent, { error, data }] = useMutation(ADD_EVENT);
-  //   update(cache, { data: { addEvent } }) {
-  //     try {
-  //       const { events } = cache.readQuery({ query: QUERY_EVENTS });
+        cache.writeQuery({
+          query: QUERY_EVENTS,
+          data: { events: [addEvent, ...events] },
+        });
+      } catch (e) {
+        console.error(e);
+      }
 
-  //       cache.writeQuery({
-  //         query: QUERY_EVENTS,
-  //         data: { events: [addEvent, ...events] },
-  //       });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //     // update me object's cache
-  //     const { me } = cache.readQuery({ query: GET_ME });
-  //     cache.writeQuery({
-  //       query: GET_ME,
-  //       data: { me: { ...me, events: [...me.events, addEvent] } },
-  //     });
-  //   },
-  // });
+      // update me object's cache
+      const { me } = cache.readQuery({ query: GET_ME });
+      cache.writeQuery({
+        query: GET_ME,
+        data: { me: { ...me, events: [...me.events, addEvent] } },
+      });
+    },
+  });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -54,7 +55,7 @@ const HomePage = () => {
           title: SaveInput.title,
           name: SaveInput.name,
           phoneNum: SaveInput.phoneNum,
-          date: "11/1/2020",
+          date: SaveInput.date,
         },
       });
     } catch (err) {
@@ -67,22 +68,17 @@ const HomePage = () => {
     SetSaveInput({ ...SaveInput, [name]: value });
   };
 
-  const [showResults, setShowResults] = React.useState(false)
-  const onClick = () => setShowResults(true)
+  const [showResults, setShowResults] = React.useState(false);
+  const onClick = () => setShowResults(true);
 
+  const Results = () => <div id="submit">Your event has been saved!</div>;
 
-const Results = () => (
-  <div id='submit'>
-    Your event has been saved!
-  </div>
-)
-  
   return (
     <div className="home-page">
       <div className="home-page-wrapper">
         {Auth.loggedIn() ? (
           <>
-        <h3 className="dtr">Add an Event</h3>
+            <h3 className="dtr">Add an Event</h3>
 
             {/* User Form Beginning */}
             <div className="form">
@@ -93,7 +89,7 @@ const Results = () => (
                   controlId="formHorizontalTo"
                 >
                   <Form.Label column lg={6}>
-                    Title
+                    Title <BsPenFill />
                   </Form.Label>
                   <Col sm={10}>
                     <Form.Control
@@ -101,7 +97,6 @@ const Results = () => (
                       name="title"
                       onChange={handleChange}
                       placeholder="Event"
-                      // value={SaveInput}
                     />
                   </Col>
                 </Form.Group>
@@ -112,7 +107,7 @@ const Results = () => (
                   controlId="formHorizontalTo"
                 >
                   <Form.Label column lg={6}>
-                    To
+                    To <BsPersonFill />
                   </Form.Label>
                   <Col sm={10}>
                     <Form.Control
@@ -120,7 +115,6 @@ const Results = () => (
                       name="name"
                       onChange={handleChange}
                       placeholder="Name"
-                      // value={SaveInput.name}
                     />
                   </Col>
                 </Form.Group>
@@ -131,29 +125,26 @@ const Results = () => (
                   controlId="formHorizontalFrom"
                 >
                   <Form.Label column lg={6}>
-                    Phone Number
+                    Phone Number <FaPhoneAlt />
                   </Form.Label>
                   <Col sm={10}>
                     <Form.Control
                       type="input"
                       name="phoneNum"
                       onChange={handleChange}
-                      placeholder="phone number"
-                      // value={SaveInput.phoneNum}
+                      placeholder="XXX-XXX-XXXX"
                     />
                   </Col>
                 </Form.Group>
 
-
                 {/* In place of a date-picker */}
-
                 <Form.Group
                   as={Row}
                   className="mb-3"
                   controlId="formHorizontalFrom"
                 >
                   <Form.Label column lg={6}>
-                    Date
+                    Date <ImCalendar />
                   </Form.Label>
                   <Col sm={10}>
                     <Form.Control
@@ -161,7 +152,6 @@ const Results = () => (
                       name="date"
                       onChange={handleChange}
                       placeholder="mm/dd/yyyy"
-                      // value={SaveInput.phoneNum}
                     />
                   </Col>
                 </Form.Group>
@@ -180,33 +170,27 @@ const Results = () => (
 
                 <Form.Group as={Row} className="mb-3">
                   <Col sm={{ span: 10, offset: 2 }}>
-                    <Button type="submit" onClick={onClick}> Submit</Button>
+                    <Button type="submit" onClick={onClick}>
+                      {" "}
+                      Submit
+                    </Button>
                   </Col>
                 </Form.Group>
-                <h4>
-              { showResults ? <Results /> : null } 
-              </h4>
+                <h4>{showResults ? <Results /> : null}</h4>
               </Form>
-
-
-
-
             </div>
             {/* User Form End */}
           </>
         ) : (
-          // <div  styles={{ backgroundImage:`url(${background})` }}>
           <h2 className="welcome">
-            Welcome to Days to Remember App. You need to be logged in to add an
-            event. Please <Link to="/login">login</Link> or{" "}
-            <Link to="/signup">signup.</Link>
+            Welcome to DAYS TO REMEMBER. Please <Link to="/login">login</Link> or{" "}
+            <Link to="/signup">signup</Link> to add an
+            event.
           </h2>
-          // </div>
         )}
       </div>
     </div>
   );
 };
-
 
 export default HomePage;

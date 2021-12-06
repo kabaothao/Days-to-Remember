@@ -7,10 +7,10 @@ form {
 .form-label {
   padding-right: 15px;
 }
-input{
+input {
   min-width: 80%;
 }
-input.date-picker{
+input.date-picker {
   min-width: auto !important;
 }
 .form-wrapper {
@@ -34,19 +34,18 @@ input.date-picker{
   padding: 10px;
   margin-top: 20px;
 }
-button:hover{
+button:hover {
   cursor: pointer;
   box-shadow: 3px 3px #bd98eb;
-
 }
 .button:active {
   box-shadow: 0 5px #fee440;
   transform: translateY(4px);
 }
 
-  @media screen and (max-width: 375px) {
-    form{
-      height: auto;
-      width: auto;
-    }
+@media screen and (max-width: 375px) {
+  form {
+    height: auto;
+    width: auto;
   }
+}

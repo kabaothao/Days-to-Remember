@@ -4,8 +4,6 @@ import { Navbar, Container, Nav, Modal, Tab } from "react-bootstrap";
 import "./Navbar.css";
 import { MdCake } from "react-icons/md";
 
-// import SignUpForm from './SignupForm';
-
 import Auth from "../utils/auth";
 
 const AppNavbar = () => {
@@ -13,15 +11,14 @@ const AppNavbar = () => {
     event.preventDefault();
     Auth.logout();
   };
-  // set modal display state
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <Navbar className="nav" fixed="top">
         <Container>
           <Navbar.Brand className="cake" as={Link} to='/'>
-            DR <MdCake />{" "}
+            <div className="logo">  DR <MdCake /></div>
+          {" "}
           </Navbar.Brand>
         </Container>
         {/* if user is logged in show saved books and logout */}
