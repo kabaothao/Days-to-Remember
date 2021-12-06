@@ -67,7 +67,7 @@ const resolvers = {
     },
     removeEvent: async (parent, { eventId }, context) => {
       if (context.user) {
-        const event = await Event.findOneAndDelete({
+        const event = await Event.remove({
           _id: eventId,
           usernameEvent: context.user.username,
         });
