@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import background from '../../img/background.jpeg';
 import "./HomePage.css";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -79,9 +80,10 @@ const Results = () => (
   return (
     <div className="home-page">
       <div className="home-page-wrapper">
-        <h3 className="dtr">Add an Event</h3>
         {Auth.loggedIn() ? (
           <>
+        <h3 className="dtr">Add an Event</h3>
+
             {/* User Form Beginning */}
             <div className="form">
               <Form className="formWrapper" onSubmit={handleFormSubmit}>
@@ -193,11 +195,13 @@ const Results = () => (
             {/* User Form End */}
           </>
         ) : (
+          // <div  styles={{ backgroundImage:`url(${background})` }}>
           <h2 className="welcome">
             Welcome to Days to Remember App. You need to be logged in to add an
             event. Please <Link to="/login">login</Link> or{" "}
             <Link to="/signup">signup.</Link>
           </h2>
+          // </div>
         )}
       </div>
     </div>
