@@ -8,10 +8,14 @@
   padding-top: 30px;
   padding-left: 30px;
 }
+.logo{
+  font-size: 40px;
+}
 .nav-link {
   padding-right: 50px !important;
   color: #9b5de5;
   text-align: center !important;
+  align-items: center !important;
   justify-content: center !important;
 }
 a {
@@ -42,9 +46,26 @@ a:hover {
 button:hover {
   cursor: pointer;
 }
+
 @media screen and (max-width: 375px) {
   .nav {
     width: auto;
     font-size: 18px;
   }
+  .logo{
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 280px) {
+  .nav {
+    width: auto;
+    font-size: 14px;
+  }
+  .logo{
+    font-size: 28px;
+  }
+  .btn.btn-lg{
+    font-size: 1rem;
+  }
+
 }

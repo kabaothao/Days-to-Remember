@@ -15,7 +15,7 @@ const eventSchema = new Schema({
   phoneNum: {
     type: String,
     required: true,
-    match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/,
+    // match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/,
     trim: true,
   },
   date: {

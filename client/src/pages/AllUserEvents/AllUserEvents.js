@@ -12,21 +12,21 @@ import { FaGrinStars } from "react-icons/fa";
 // import Auth from '../../utils/auth';
 
 const AllUserEvents = () => {
-  const { loading, data } = useQuery(QUERY_EVENTS);
-  const userData = data?.events || [];
-  // console.log("???", userData);
+  const { loading, data } = useQuery(GET_ME);
+  const userData = data?.me.events || [];
+  console.log("???", userData);
   const [removeEvent] = useMutation(REMOVE_EVENT);
   // console.log("removing", userData);
 
-  const handleDeleteEvent = async (event) => {
-    event.preventDefault();
+  const handleDeleteEvent = async (eventId) => {
+    // event.preventDefault();
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
     try {
-      console.log("userData", userData);
+      // console.log("userData", userData);
       // console.log("eventId", eventId);
-      const { data } = await removeEvent({
+      const { userData } = await removeEvent({
         variables: { 
-          // eventId: eventId
+          eventId: eventId
         },
       })
     } catch (err) {

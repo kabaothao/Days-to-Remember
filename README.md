@@ -4,13 +4,15 @@
 https://github.com/kabaothao/Days-to-Remember
 
 ## Description 
-
+Our app reminds you of your friends' and family's birthdays, anniversaries, and other important dates. It has a simple design focusing on what truly matters. You'll never forget an important day anymore. All you need to do is fill out a form to save a date that you want to remember. 
 
 ## Demo 
 
 ***
+![demo_still](./client/public/images/demo_3.png)
+![demo_still](./client/public/images/demo_1.png)
+![demo_still](./client/public/images/demo_2.png)
 
-![demo_still](./portfolio/src/Assets/images/demo.png)
 
 ## Table of Contents
 * [Technologies used](#technologies-used)
@@ -21,19 +23,26 @@ https://github.com/kabaothao/Days-to-Remember
 ## Technologies used
   - JSX
   - CSS
+  - Bootstrap
+  - API
+  - React
   - Node.js
   - Express.js
-  - React
-  - GraphQL
+  - Moment.js
   - JWT
-  - API
+  - GraphQL
+  - Mongoose
   - MongoDB
-
+  - Twilio
+  - Heroku 
 
 ## Contributions
   *Alena Rehberger*
+
   *David Tierney*
+
   *Jose Avalos*
+
   *Kabao Thao*
 
 ## Credits
@@ -45,7 +54,6 @@ If you have any questions, feel free to cantact us at:
   * https://github.com/daveshouse44
   * https://github.com/AlenaReh
   * https://github.com/pepsi1397
-
 
 Or connect with us on LinkedIn:
   
