@@ -41,7 +41,7 @@ app.get("/api/send_reminders", async (request, response) => {
     .create({
       from: process.env.TWILIO_PHONE_NUMBER,
       to: reminders[i].phoneNum,
-      body: reminders[i].title
+      body: (`${reminders[i].title} ${reminders[i].name}!! From: ${reminders[i].usernameEvent}!`)
     })
     .then(() => {
       sentCount++;
