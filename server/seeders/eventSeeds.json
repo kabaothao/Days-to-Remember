@@ -1,23 +1,9 @@
 [
     {
-        "title": "Birthday",
-        "name": "Jane Doe",
-        "phoneNum": "123-456-7890",
+        "title": "Happy Birthday!",
+        "name": "David T",
+        "phoneNum": "+16127026178",
         "date": "08/07/1990",
         "usernameEvent": "Bob Ross"
-    },
-    {
-        "title": "Birthday",
-        "name": "John Doe",
-        "phoneNum": "234-567-8901",
-        "date": "11/15/2000",
-        "usernameEvent": "Bob Ross"
-    },
-    {
-        "title": "Anniversary",
-        "name": "Do Jahn",
-        "phoneNum": "213-456-7890",
-        "date": "12/02/1980",
-        "usernameEvent": "Sal"
     }
 ]
