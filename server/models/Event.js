@@ -31,6 +31,10 @@ const eventSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  hasBeenSent: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Event = model("Event", eventSchema);

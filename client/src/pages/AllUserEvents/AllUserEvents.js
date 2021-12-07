@@ -16,16 +16,15 @@ const AllUserEvents = () => {
   const userData = data?.me.events || [];
   // console.log("???", userData);
   const [removeEvent] = useMutation(REMOVE_EVENT);
-  console.log("removing userData", userData);
+  // console.log("removing userData", userData);
   const [showResults, setShowResults] = React.useState(false);
-
   const Results = () => <div id="delete">Your event has been deleted! Pleas refresh the page =)</div>;
 
   const handleDeleteEvent = async (eventId) => {
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
     try {
-      console.log("Delete button clicked", eventId);
-      console.log("userData", userData);
+      // console.log("Delete button clicked", eventId);
+      // console.log("userData", userData);
       const { data } = await removeEvent({
         variables: {
           eventId: eventId,
@@ -33,7 +32,7 @@ const AllUserEvents = () => {
       });
       console.log("data", data, "updated userdata", userData);
       setShowResults(true);
-      // window.location.reload();
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -73,7 +72,7 @@ const AllUserEvents = () => {
                 </div>
               </div>
             </div>
-            <h4>{showResults ? <Results /> : null}</h4>
+            {/* <h4>{showResults ? <Results /> : null}</h4> */}
           </>
         ))}
     </div>

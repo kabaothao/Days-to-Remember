@@ -89,14 +89,14 @@ const HomePage = () => {
                   controlId="formHorizontalTo"
                 >
                   <Form.Label column lg={6}>
-                    Title <BsPenFill />
+                    Message <BsPenFill />
                   </Form.Label>
                   <Col sm={10}>
                     <Form.Control
                       type="input"
                       name="title"
                       onChange={handleChange}
-                      placeholder="Event"
+                      placeholder="Your message here"
                     />
                   </Col>
                 </Form.Group>
@@ -132,7 +132,7 @@ const HomePage = () => {
                       type="input"
                       name="phoneNum"
                       onChange={handleChange}
-                      placeholder="XXX-XXX-XXXX"
+                      placeholder="+1XXXXXXXXXX"
                     />
                   </Col>
                 </Form.Group>

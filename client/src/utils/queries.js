@@ -14,6 +14,7 @@ export const GET_ME = gql`
         name
         phoneNum
         date
+        hasBeenSent
       }
       # cards {
       #     _id
