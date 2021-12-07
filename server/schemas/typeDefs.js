@@ -24,6 +24,8 @@ const typeDefs = gql`
     name: String
     phoneNum: String
     date: String
+    hasBeenSent: Boolean
+    usernameEvent: String
   }
 
   type Auth {
