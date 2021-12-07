@@ -11,6 +11,7 @@ export const GET_ME = gql`
       events {
         _id
         title
+        message
         name
         phoneNum
         date
