@@ -24,6 +24,7 @@ const typeDefs = gql`
     name: String
     phoneNum: String
     date: String
+    usernameEvent: String
   }
 
   type Auth {
