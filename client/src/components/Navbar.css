@@ -55,6 +55,9 @@ button:hover {
   .logo{
     font-size: 30px;
   }
+  .btn.btn-lg{
+    font-size: 1rem;
+  }
 }
 @media screen and (max-width: 280px) {
   .nav {

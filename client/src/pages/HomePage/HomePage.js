@@ -19,6 +19,7 @@ const HomePage = () => {
   //declaring variables to useState
   const [SaveInput, SetSaveInput] = useState({
     title: "",
+    message: "",
     name: "",
     phoneNum: "",
     date: "",
@@ -53,6 +54,7 @@ const HomePage = () => {
       const { data } = await addEvent({
         variables: {
           title: SaveInput.title,
+          message: SaveInput.message,
           name: SaveInput.name,
           phoneNum: SaveInput.phoneNum,
           date: SaveInput.date,
@@ -89,12 +91,30 @@ const HomePage = () => {
                   controlId="formHorizontalTo"
                 >
                   <Form.Label column lg={6}>
-                    Message <BsPenFill />
+                    Title <BsPenFill />
                   </Form.Label>
                   <Col sm={10}>
                     <Form.Control
                       type="input"
                       name="title"
+                      onChange={handleChange}
+                      placeholder="Event"
+                    />
+                  </Col>
+                </Form.Group>
+
+                <Form.Group
+                  as={Row}
+                  className="mb-3"
+                  controlId="formHorizontalTo"
+                >
+                  <Form.Label column lg={6}>
+                    Message <BsPenFill />
+                  </Form.Label>
+                  <Col sm={10}>
+                    <Form.Control
+                      type="input"
+                      name="message"
                       onChange={handleChange}
                       placeholder="Your message here"
                     />
@@ -132,7 +152,7 @@ const HomePage = () => {
                       type="input"
                       name="phoneNum"
                       onChange={handleChange}
-                      placeholder="+1XXXXXXXXXX"
+                      placeholder="+1-XXX-XXX-XXXX"
                     />
                   </Col>
                 </Form.Group>

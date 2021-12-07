@@ -33,9 +33,10 @@ export const ADD_USER = gql`
 //TODO:ADD_EVENT will execute the ADD_EVENT mutation.
 
 export const ADD_EVENT = gql`
-  mutation addEvent($title:String!, $name:String, $phoneNum:String, $date:String) {
-    addEvent(title: $title, name: $name, phoneNum: $phoneNum, date: $date) {
+  mutation addEvent($title:String!, $message:String, $name:String, $phoneNum:String, $date:String) {
+    addEvent(title: $title, message: $message, name: $name, phoneNum: $phoneNum, date: $date) {
       title
+      message
       name
       phoneNum
       date
@@ -58,6 +59,7 @@ export const REMOVE_EVENT = gql`
     removeEvent(eventId: $eventId) {
       _id
       title
+      message
       name
       phoneNum
       date

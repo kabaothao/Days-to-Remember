@@ -47,11 +47,12 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addEvent: async (parent, { title, name, phoneNum, hasBeenSent, date }, context) => {
+    addEvent: async (parent, { title, message, name, phoneNum, hasBeenSent, date }, context) => {
       if (context.user) {
         // console.log("Context", context);
         const event = await Event.create({
           title,
+          message,
           name,
           phoneNum,
           date,
