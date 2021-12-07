@@ -1,6 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+const Event = require('./models/Event')
+const https = require('https');
 
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
@@ -30,9 +32,29 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+let sentCount = 0;
+app.get("/api/send_reminders", async (request, response) => {
+  try {
+      var reminders = await Event.find();
+      for (var i = 0; i < reminders.length; i++) { 
+        client.messages
+    .create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: reminders[i].phoneNum,
+      body: reminders[i].title
+    })
+    .then(() => {
+      sentCount++;
+    })
+    .catch(err => {
+      console.log(err);
+      res.send(JSON.stringify({ success: false }));
+    });
+      }
+      response.send("sentCount:"+sentCount)
+  } catch (error) {
+      response.status(500).send(error);
+  }
 });
 
 // route to post messages that send SMS through Twilio
@@ -51,6 +73,10 @@ app.post('/api/messages', (req, res) => {
       console.log(err);
       res.send(JSON.stringify({ success: false }));
     });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 db.once('open', () => {
