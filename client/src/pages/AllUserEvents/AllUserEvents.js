@@ -13,7 +13,7 @@ const AllUserEvents = () => {
   const userData = data?.me.events || [];
   const [removeEvent] = useMutation(REMOVE_EVENT);
   const [showResults, setShowResults] = React.useState(false);
-  const Results = () => <div id="delete">Your event has been deleted! Pleas refresh the page =)</div>;
+  // const Results = () => <div id="delete">Your event has been deleted! Pleas refresh the page =)</div>;
 
   const handleDeleteEvent = async (eventId) => {
     // const token = Auth.loggedIn() ? Auth.getToken() : null;

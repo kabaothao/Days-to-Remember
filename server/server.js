@@ -42,12 +42,28 @@ let sentCount = 0;
 app.get("/api/send_reminders", async (request, response) => {
   try {
       var reminders = await Event.find();
-      for (var i = 0; i < reminders.length; i++) { 
+      for (var i = 0; i < reminders.length; i++) {
+
+        console.log("===========================REMINDERS", reminders[i].date)
+
+        let queriedDate = reminders[i].date;
+        console.log(queriedDate);
+
+        const currentDate = new Date();
+        console.log(currentDate)
+
+        if (currentDate.getDate() === queriedDate.getDate() & currentDate.getMonth() === queriedDate.getMonth()){
+          console.log("Dates are equal")
+        } else {
+          console.log("Dates are not equal")
+          return;
+        }
+
         client.messages
     .create({
       from: process.env.TWILIO_PHONE_NUMBER,
       to: reminders[i].phoneNum,
-      body: (`${reminders[i].title} ${reminders[i].name}!! From: ${reminders[i].usernameEvent}!`)
+      body: (`${reminders[i].message} ${reminders[i].name}!! From: ${reminders[i].usernameEvent}!`)
     })
     .then(() => {
       sentCount++;
