@@ -4,27 +4,20 @@ import "moment-timezone";
 import "./AllUserEvents.css";
 import { Button } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/client";
-// import { useParams } from 'react-router-dom';
-import { Link } from "react-router-dom";
 import { QUERY_EVENTS, QUERY_EVENT, GET_ME } from "../../utils/queries";
 import { REMOVE_EVENT } from "../../utils/mutations";
 import { FaGrinStars } from "react-icons/fa";
-// import Auth from '../../utils/auth';
 
 const AllUserEvents = () => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me.events || [];
-  // console.log("???", userData);
   const [removeEvent] = useMutation(REMOVE_EVENT);
-  // console.log("removing userData", userData);
   const [showResults, setShowResults] = React.useState(false);
   const Results = () => <div id="delete">Your event has been deleted! Pleas refresh the page =)</div>;
 
   const handleDeleteEvent = async (eventId) => {
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
     try {
-      // console.log("Delete button clicked", eventId);
-      // console.log("userData", userData);
       const { data } = await removeEvent({
         variables: {
           eventId: eventId,
@@ -62,7 +55,6 @@ const AllUserEvents = () => {
                 </Moment>
                 <div>
                   <Button
-                    // onSubmit={handleDeteEvent}
                     onClick={() => handleDeleteEvent(event._id)}
                     className="event-delete-btn"
                     type="submit"
@@ -72,7 +64,6 @@ const AllUserEvents = () => {
                 </div>
               </div>
             </div>
-            {/* <h4>{showResults ? <Results /> : null}</h4> */}
           </>
         ))}
     </div>

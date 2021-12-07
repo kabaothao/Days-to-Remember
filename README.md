@@ -9,9 +9,10 @@ Our app reminds you of your friends' and family's birthdays, anniversaries, and 
 ## Demo 
 
 ***
-![demo_still](./client/public/images/demo_3.png)
 ![demo_still](./client/public/images/demo_1.png)
+![demo_still](./client/public/images/demo_3.png)
 ![demo_still](./client/public/images/demo_2.png)
+![demo_still](./client/public/images/demo_4.png)
 
 
 ## Table of Contents

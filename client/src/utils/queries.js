@@ -14,7 +14,6 @@ export const GET_ME = gql`
         name
         phoneNum
         date
-        hasBeenSent
       }
       # cards {
       #     _id
@@ -35,6 +34,7 @@ export const QUERY_EVENTS = gql`
       name
       phoneNum
       date
+      hasBeenSent
     }
   }
 `;
@@ -47,5 +47,6 @@ query getEvent($eventId: ID!) {
       name
       phoneNum
       date
+      hasBeenSent
   }
 }`
