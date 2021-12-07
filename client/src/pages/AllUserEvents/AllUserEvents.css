@@ -47,6 +47,11 @@ body {
 button:hover{
   cursor: pointer;
 }
+#delete{
+  text-align: center;
+  padding: 50px;
+  font-style: italic;
+}
 @media screen and (max-width: 375px) {
   .events-page{
     min-height: 160vh;

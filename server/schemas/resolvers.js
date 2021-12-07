@@ -57,16 +57,18 @@ const resolvers = {
           date,
           usernameEvent: context.user.username
         });
-        // await User.findOneAndUpdate(
-        //   { username: context.user.username },
-        //   { $addToSet: { events: event._id } }
-        // );
+        //console.log("updating user for the event", context.user.username);
+        await User.findOneAndUpdate(
+          { username: context.user.username },
+          { $addToSet: { events: event._id } }
+        );
         return event;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     removeEvent: async (parent, { eventId }, context) => {
       if (context.user) {
+        console.log("Delete event", eventId, context.user.username); 
         const event = await Event.remove({
           _id: eventId,
           usernameEvent: context.user.username,
