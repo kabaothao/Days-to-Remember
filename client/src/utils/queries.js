@@ -31,6 +31,7 @@ export const QUERY_EVENTS = gql`
     events {
       _id
       title
+      message
       name
       phoneNum
       date
@@ -44,6 +45,7 @@ query getEvent($eventId: ID!) {
   event(eventId: $eventId) {
       _id
       title
+      message
       name
       phoneNum
       date
