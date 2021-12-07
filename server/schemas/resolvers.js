@@ -47,7 +47,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addEvent: async (parent, { title, name, phoneNum, date }, context) => {
+    addEvent: async (parent, { title, name, phoneNum, hasBeenSent, date }, context) => {
       if (context.user) {
         // console.log("Context", context);
         const event = await Event.create({
@@ -55,6 +55,7 @@ const resolvers = {
           name,
           phoneNum,
           date,
+          hasBeenSent,
           usernameEvent: context.user.username
         });
         //console.log("updating user for the event", context.user.username);
