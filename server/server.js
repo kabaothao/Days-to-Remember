@@ -8,10 +8,16 @@ const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 require("dotenv").config();
 // require Twilio credentials from utils
+console.log(process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN,
+  process.env.TWILIO_USERNAME);
 const client = require('twilio')(
   process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
+  process.env.TWILIO_AUTH_TOKEN,
+  process.env.TWILIO_USERNAME,
+
 );
+
 
 const db = require('./config/connection');
 
