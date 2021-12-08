@@ -8,8 +8,8 @@
   padding-top: 30px;
   padding-left: 30px;
 }
-.logo{
-  font-size: 40px;
+.logo {
+  font-size: 34px;
 }
 .nav-link {
   padding-right: 50px !important;
@@ -50,25 +50,29 @@ button:hover {
 @media screen and (max-width: 375px) {
   .nav {
     width: auto;
-    font-size: 18px;
+    font-size: 14px;
   }
-  .logo{
-    font-size: 30px;
+  .logo {
+    font-size: 24px;
   }
-  .btn.btn-lg{
-    font-size: 1rem;
+  .btn.btn-lg {
+    font-size: 0.7rem;
+  }
+  .btn.btn-lg {
+    font-size: 0.6rem;
+    padding: 0.6rem;
   }
 }
 @media screen and (max-width: 280px) {
   .nav {
     width: auto;
-    font-size: 14px;
+    font-size: 12px;
   }
-  .logo{
-    font-size: 28px;
+  .logo {
+    font-size: 20px;
   }
-  .btn.btn-lg{
-    font-size: 1rem;
+  .btn.btn-lg {
+    font-size: 0.6rem;
+    padding: 0.2rem;
   }
-
 }
