@@ -50,7 +50,7 @@ const HomePage = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("=======", SaveInput);
+      // console.log("=======", SaveInput);
       const { data } = await addEvent({
         variables: {
           title: SaveInput.title,
@@ -99,6 +99,7 @@ const HomePage = () => {
                       name="title"
                       onChange={handleChange}
                       placeholder="Event"
+                      required
                     />
                   </Col>
                 </Form.Group>
@@ -117,6 +118,7 @@ const HomePage = () => {
                       name="message"
                       onChange={handleChange}
                       placeholder="Your message here"
+                      required
                     />
                   </Col>
                 </Form.Group>
@@ -135,6 +137,7 @@ const HomePage = () => {
                       name="name"
                       onChange={handleChange}
                       placeholder="Name"
+                      required
                     />
                   </Col>
                 </Form.Group>
@@ -153,6 +156,7 @@ const HomePage = () => {
                       name="phoneNum"
                       onChange={handleChange}
                       placeholder="+1-XXX-XXX-XXXX"
+                      required
                     />
                   </Col>
                 </Form.Group>
@@ -172,6 +176,7 @@ const HomePage = () => {
                       name="date"
                       onChange={handleChange}
                       placeholder="mm/dd/yyyy"
+                      required
                     />
                   </Col>
                 </Form.Group>
