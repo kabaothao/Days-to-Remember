@@ -48,9 +48,10 @@ app.get("/api/send_reminders", async (request, response) => {
 
         let queriedDate = reminders[i].date;
         console.log(queriedDate);
-
-        const currentDate = new Date();
-        console.log(currentDate)
+        const timelagging = 6;
+        const utc = new Date();
+        const currentDate = new Date(utc.getTime()-((1 * 60 * 60 * 1000) * timelagging));
+        console.log("=======================DATE", currentDate)
 
         if (currentDate.getDate() === queriedDate.getDate() & currentDate.getMonth() === queriedDate.getMonth()){
           console.log("Dates are equal")
