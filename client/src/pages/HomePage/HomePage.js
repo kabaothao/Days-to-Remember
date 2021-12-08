@@ -99,6 +99,7 @@ const HomePage = () => {
                       name="title"
                       onChange={handleChange}
                       placeholder="Event"
+                      required
                     />
                   </Col>
                 </Form.Group>
